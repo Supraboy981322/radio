@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Radio</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+    </head>
+    <audio id="music" src="" preload="none"></audio>
+    <body>
+        <div class="topBar">
+            <div id="pageTitleCont" class="pageTitle"></div>
+            <span id="menu" onclick="menu(true);">
+                <span class="top">-</span>
+                <span class="middle">-</span>
+                <span class="bottom">-</span>
+                <div class="close" style="display: none" onclick="menu(false);"><p>&times;</p></div>
+                <p style="display: none;" id="item">github</p>
+                <p style="display: none;" id="item">settings</p>
+                <p style="display: none;" id="item">clients</p>
+            </span>
+        </div>
+        <div id="wall"></div>
+        <div id="settingsWall" style="display: none;">
+            <button class="return" onclick="settings(false)">return</button>
+            <div id="settings"></div>
+        </div>
+    </body>
+    <script src="script.js"></script>
+</html>

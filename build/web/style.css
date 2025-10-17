@@ -1,0 +1,150 @@
+@font-face {
+    font-family: "pageTitle";
+/*    src: url("/fonts/GrowBack.otf");*/
+/*    src: url("/fonts/CholoRhita.otf");*/
+    src: url("/fonts/blockat.otf");
+}
+
+@font-face {
+    font-family: "primary";
+    src: url("/fonts/0xProto.ttf");
+}
+
+:root {
+    font-family: "primary";
+    font-size: 5vw;
+    /*oklch(.83 .2 77.44)*/
+    --backgroundPrimary: #2e3440;
+    --textMain: #ffffff;
+    --primary: #5e81ac;
+    --secondary: #4c566a;
+    --tertiary: #deb1d6;
+    --quaternary: oklch(.83 .2 77.44);
+    --quinary: #f58c62;
+}
+
+body {
+    background-color: var(--backgroundPrimary);
+    color: var(--textMain);
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.pageTitle {
+    font-family: "pageTitle";
+    width: 100%;
+    background-color: var(--secondary);
+    text-align: center;
+    margin: 0px;
+    color: var(--textMain);
+    padding: 0.2em;
+    z-index: 5;
+    position: sticky;
+    top: 0;
+}
+
+.icon {
+    border: solid 0.25em var(--secondary);
+    border-radius: 99em;
+    margin: 0;
+    padding: 0;
+    height: 2em;
+    width: 2em;
+    float: left;
+    z-index: 9;
+    top: 0;
+    position: fixed;
+}
+
+.station {
+    margin-left: auto;
+    margin-right: auto;
+    width: 95%;
+    display: flex;
+    left: 5%;
+    padding: 0.5em;
+    height: fit-content;
+    button {
+        flex-grow: 1;
+        margin-left: 1em;
+        border: none;
+        border-radius: 0.5em;
+        padding: 0.225em 0.5em;
+        font-weight: bold;
+        font-size: unset;
+        transition: all 0.25s;
+    }
+    
+    button:hover { background-color: var(--tertiary); }
+    button.active{ background-color: var(--quaternary); }
+    button.active:hover { background-color: var(--quinary); }
+    
+    .title {
+        background-color: var(--primary);
+        width: 100%;
+        padding: 0.225em 0.5em;
+        border-radius: 0.5em;
+        margin-right: 0;
+        display: inline-block;
+    }
+}
+
+@media screen and (orientation: landscape) {
+    :root {
+        font-size:4vh;
+    }
+    
+    #wall {
+        margin-top: 1.5vw;
+    }
+    
+    .title {
+        max-width: 80vw;
+    }
+}
+
+@media screen and (min-height: 800px) and (orientation: landscape) {
+    :root {
+        font-size: 2.25vh
+    }
+    .station {
+        text-align: left;
+    }
+}
+
+@media screen and (orientation: portrait) {
+    :root {
+        font-size: 2vw;
+    }
+    
+    #wall {
+        margin-top: 0.5vw;
+    }
+}
+
+@media screen and (orientation: portrait) {
+    :root {
+        font-size: 5vw;
+    }
+    .station {
+        text-align: right;
+    }
+}
+
+@media (aspect-ratio: 16/9) and (aspect-ratio: 16/10) {
+   @media screen and (orientation: portrait) {
+        :root {
+            font-size: 2vw;
+        }
+    }
+
+    @media screen and (max-width: 500px) and (orientation: portrait) {
+        :root {
+            font-size: 5vw;
+        }
+        .station {
+            text-align: right;
+        }
+    }
+}
