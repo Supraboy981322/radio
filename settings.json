@@ -1,0 +1,16 @@
+[
+    [
+        "theme",
+        "0",
+        "int",
+        null,
+        "dark"
+    ],
+    [
+        "customCSS",
+        "poopy",
+        "string",
+        "url for custom css",
+        null
+    ]
+]

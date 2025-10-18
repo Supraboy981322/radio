@@ -7,6 +7,8 @@ import (
     "net/http"
     "io/ioutil"
     "net"
+    //exclusively used for http.ListenAndServe so I can
+    //  write one less if err != nil { ... }
     "log"
 )
 
@@ -14,6 +16,8 @@ func webInterface(w http.ResponseWriter, r *http.Request) {
     var requestedPage string
     if r.URL.Path == "/" {
         requestedPage = "web/index.html"
+    } else if r.URL.Path == "/settings.json" {
+        requestedPage = "settings.json"
     } else {
         requestedPage = "web/" + r.URL.Path[1:]
     }
@@ -29,7 +33,15 @@ func webInterface(w http.ResponseWriter, r *http.Request) {
 }
 
 func actionHandler(w http.ResponseWriter, r *http.Request) {
-    fmt.Println("recieved http request")
+    fmt.Println("recieved action request")
+    w.Write([]byte("recieved"));
+    requestedAction := r.Header.Get("action")
+    doThing := r.Header.Get("do")
+    if requestedAction == "settings" {
+        fmt.Printf("requestedAction == \"%s\"\ndoThing == \"%s\"\n", requestedAction, doThing)
+    } else {
+        fmt.Errorf("attempted to action does not exist."
+    }
 }
 
 func main() {
