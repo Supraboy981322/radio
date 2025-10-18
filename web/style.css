@@ -289,13 +289,25 @@ body {
         transition: all 0.25s;
         font-size: 1.1em;
         font-weight: bold;
-        background-color: var(--quaternary);
-        color: var(--backgroundPrimary);
         cursor: pointer;
     }
 
-    button:hover {
+    button.return {
+        background-color: var(--whiteIsh);
+        color: var(--backgroundPrimary);
+    }
+    
+    button.save {
+        background-color: var(--quaternary);
+        color: var(--backgroundPrimary);
+    }
+
+    button.save:hover {
         background-color: var(--tertiary);
+    }
+
+    button.return:hover {
+        background-color: var(--senary);
     }
 
     [type="input"] {
