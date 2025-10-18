@@ -40,7 +40,7 @@ func actionHandler(w http.ResponseWriter, r *http.Request) {
     if requestedAction == "settings" {
         fmt.Printf("requestedAction == \"%s\"\ndoThing == \"%s\"\n", requestedAction, doThing)
     } else {
-        fmt.Errorf("attempted to action does not exist."
+        fmt.Errorf("attempted to action does not exist.")
     }
 }
 
