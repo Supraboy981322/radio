@@ -296,3 +296,7 @@ function updateIndicator(which, indicatorDummy, valueSTR) {
             console.error(`err! undefined setting change! this is very weird behavior and should never occur:  ${which}`);
     }
 }
+
+function saveSettings() {
+    console.log("attempting to save settings");
+}
