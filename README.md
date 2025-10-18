@@ -2,6 +2,8 @@
 
 An internet radio server, and web client.
 
+<sup>this is work-in-progress</sup>
+
 ---
 
 ## Progress
