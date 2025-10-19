@@ -1,4 +1,4 @@
-const githubURL = "https://supraboy981322.github.io/subpages/text-break?t=todo%3A%20github%20page";
+const githubURL = "https://github.com/Supraboy981322/radio";
 const musicElm = document.getElementById("music");
 const wall = document.getElementById("wall");
 const settingsWall = document.getElementById("settingsWall");
@@ -204,14 +204,20 @@ function link(what) {
         case "clients":
             console.log(`    todo:  ${what}"`);
             break;
+        case "home":
+            settings(false);
+            break;
         default:
-            console.Error(`    attempted to execute fn link() with undefined value:  ${what}`);
+            console.error(`    attempted to execute fn link() with undefined value:  ${what}`);
     }
     menu(false);
 }
 
 async function settings(open) {
     if (open) {
+        menuSettingItem = document.querySelector(`#menu #item[onclick='link("settings")']`);
+        menuSettingItem.innerText = "home";
+        menuSettingItem.setAttribute("onclick", 'link("home")');
         wall.setAttribute("style", "display: none");
         try {
             const settings = await fetchSettings("settings.json");
@@ -281,6 +287,10 @@ async function settings(open) {
         settingsElm.innerHTML = "";
         settingsWall.setAttribute("style", "display: none;");
         wall.removeAttribute("style");
+        menuSettingItem = document.querySelector(`#menu #item[onclick='link("home")']`);
+        menuSettingItem.innerText = "settings";
+        menuSettingItem.setAttribute("onclick", 'link("settings")');
+        menu(false);
     }
 }
 
