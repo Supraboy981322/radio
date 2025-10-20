@@ -66,7 +66,9 @@ func main() {
             }
         }
     }
+
 	stream("[redacted .ogg file path]", "[redacted icecast server address]")
+	
     log.Fatal(http.ListenAndServe(":"+port, nil))
 }
 
