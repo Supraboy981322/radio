@@ -7,6 +7,9 @@ import (
     "net/http"
     "io/ioutil"
     "net"
+	"os/exec"
+//	"os"
+//	"encoding/json"
     //exclusively used for http.ListenAndServe so I can
     //  write one less if err != nil { ... }
     "log"
@@ -63,6 +66,33 @@ func main() {
             }
         }
     }
-    
+	stream("redacted .ogg file path", "redacted icecast server address")
     log.Fatal(http.ListenAndServe(":"+port, nil))
+}
+
+func stream(file string, url string) {
+	cmdArgs := []string{
+		"-re",
+		"-i", file,
+		"-c:a", "copy",
+		"-content_type", "audio/ogg",
+		"-f", "ogg",
+		url,
+	}
+
+	cmd := exec.Command("ffmpeg", cmdArgs...)
+	
+	err := cmd.Start()
+	if err != nil {
+		fmt.Errorf("failed to start FFmpeg: %v\n", err)
+	}
+
+	fmt.Printf("FFmpeg process started.\n")
+
+	err = cmd.Wait()
+	if err != nil {
+		fmt.Errorf("FFmpeg process exited with error code: %v\n", err)
+	}
+	
+	fmt.Printf("FFmpeg process finished.\n")
 }

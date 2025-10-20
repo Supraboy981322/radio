@@ -14,5 +14,12 @@
         "type": "string",
         "desc": "url for custom css",
         "indicator": null
+    },
+    {
+        "name": "icecast server",
+        "value": "redacted icecast server",
+        "type": "string",
+        "desc": "the domain for your icecast server",
+        "indicator": null
     }
 ]
