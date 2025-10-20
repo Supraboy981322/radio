@@ -17,7 +17,7 @@
     },
     {
         "name": "icecast server",
-        "value": "redacted icecast server",
+        "value": "[redacted icecast server]",
         "type": "string",
         "desc": "the domain for your icecast server",
         "indicator": null
