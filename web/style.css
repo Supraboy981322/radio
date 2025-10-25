@@ -1,11 +1,11 @@
 @font-face {
     font-family: "pageTitle";
-    src: url("/fonts/blockat.otf");
+    src: url("/fonts/blockat.otf") format("TrueType");
 }
 
 @font-face {
     font-family: "primary";
-    src: url("/fonts/0xProto.ttf");
+    src: url("/fonts/0xProto.ttf") format("TrueType");
 }
 
 :root {
