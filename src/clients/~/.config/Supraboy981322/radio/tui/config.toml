@@ -1,0 +1,9 @@
+
+	[server]
+	radio = https://example.com/
+
+	[style]
+	libraryTitleColor = "#05b4ff"
+	libraryItemNameColor = "#4287f5"
+	libraryItemDescColor = "#2d579c"
+	
