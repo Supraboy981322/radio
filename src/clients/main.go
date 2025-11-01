@@ -58,6 +58,7 @@ type (
 	}
 )
 
+
 //I know this looks like trash, but
 //  it's better than writing 
 //  `fmt.Println(...)` (or the `log`/`slog` equivalent)
@@ -71,6 +72,7 @@ func wrTsk() {               //basically...
 		startupTasks[curTask])   //add the task string from list
 	curTask++                  //increment task counter
 }
+
 
 func main() {
 	//first of many calls for that that startup
@@ -130,7 +132,6 @@ func main() {
 						conf.Style.LibraryItemNameColor)
 	ListItemDescColor = lipgloss.Color(
 						conf.Style.LibraryItemDescColor)
-
 	
 	if url == "" {
 		wrTsk()
@@ -145,6 +146,7 @@ func main() {
 		fserr("TODO: skip menu and play from url")
 	}
 }
+
 
 func help() {
 	//get the uer's home dir
@@ -178,6 +180,7 @@ func help() {
 	os.Exit(0)
 }
 
+
 func refreshStations() []list.Item {
 	wrTsk()
 
@@ -208,6 +211,7 @@ func refreshStations() []list.Item {
 
 	return items
 }
+
 
 func checkInstall() {
 	//get usr home

@@ -18,17 +18,20 @@ type item struct {
 	title, desc string
 }
 
-func (i item) Title()       string { return i.title }
-func (i item) Description() string { return i.desc }
-func (i item) FilterValue() string { return i.title }
-
 type model struct {
 	list list.Model
 }
 
+
+func (i item) Title()       string { return i.title }
+func (i item) Description() string { return i.desc }
+func (i item) FilterValue() string { return i.title }
+
+
 func (m model) Init() tea.Cmd {
 	return nil
 }
+
 
 func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
@@ -46,9 +49,11 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	return m, cmd
 }
 
+
 func (m model) View() string {
 	return docStyle.Render(m.list.View())
 }
+
 
 func startUI(items []list.Item) {
 	d := list.NewDefaultDelegate()
