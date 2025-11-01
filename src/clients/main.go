@@ -206,7 +206,7 @@ func refreshStations() []list.Item {
 	for _, itm := range library {
 		items = append(items, item{
 			title: string(itm[0]),
-			desc: string(itm[1])})
+			desc: string(itm[2])})
 	}
 
 	return items

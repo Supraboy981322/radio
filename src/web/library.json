@@ -1,114 +1,152 @@
 [
-    [
-        "low fidelity",
-        "https://icecast.my-lan.dev/lofi.ogg"
-    ],
-    [
-        "lofi girl streams",
-        "https://icecast.my-lan.dev/lofi-girl.ogg"
-    ],
-    [
-        "synthwave",
-        "https://icecast.my-lan.dev/synth.ogg"
-    ],
-    [
-        "eurobeat",
-        "https://icecast.my-lan.dev/eurobeat.ogg"
-    ],
-    [
-        "amiga music",
-        "https://icecast.my-lan.dev/amiga.ogg"
-    ],
-    [
-        "cracktro compilations",
-        "https://icecast.my-lan.dev/cracktro-compilations.ogg"
-    ],
-    [
-        "cracktro",
-        "https://icecast.my-lan.dev/cracktro.ogg"
-    ],
-    [
-        "chillhop",
-        "https://icecast.my-lan.dev/chillhop.ogg"
-    ],
-    [
-        "80s Radio Hits",
-        "https://icecast.my-lan.dev/80s.ogg"
-    ],
-    [
-        "Ultimate 80s Party",
-        "https://icecast.my-lan.dev/ultimate-80s.ogg"
-    ],
-    [
-        "1940s Radio Station",
-        "https://uk3.internet-radio.com/proxy/1940sradio?mp=/live"
-    ],
-    [
-        "The Beatles",
-        "https://icecast.my-lan.dev/theBeatles.ogg"
-    ],
-    [
-        "super mario world",
-        "https://icecast.my-lan.dev/super-mario-world.ogg"
-    ],
-    [
-        "super mario maker ost",
-        "https://icecast.my-lan.dev/super-mario-maker-ost.ogg"
-    ],
-    [
-        "the very best of 90s",
-        "https://icecast.my-lan.dev/the-very-best-of-90s.ogg"
-    ],
-    [
-        "80s Pop",
-        "https://icecast.my-lan.dev/80sPop.ogg"
-    ],
-    [
-        "80s Rock",
-        "https://icecast.my-lan.dev/80sRock.ogg"
-    ],
-    [
-        "Bruce Springsteen",
-        "https://icecast.my-lan.dev/bruceSpringsteen.ogg"
-    ],
-    [
-        "Ghostbusters OST",
-        "https://icecast.my-lan.dev/ghostbusters-OST.ogg"
-    ],
-    [
-        "Graham Kartna",
-        "https://icecast.my-lan.dev/grahamKartna.ogg"
-    ],
-    [
-        "Springfield OST",
-        "https://icecast.my-lan.dev/springfieldOST.ogg"
-    ],
-    [
-        "Tetris CDi",
-        "https://icecast.my-lan.dev/TetrisCDi.ogg"
-    ],
-    [
-        "The Best Of The 60s, 70s, 80s, & 90s",
-        "https://icecast.my-lan.dev/bestOf60s70s80s90s.ogg"
-    ],
-    [
-        "christmas low fidelity",
-        "https://icecast.my-lan.dev/christmas_lofi.ogg"
-    ],
-    [
-        "djo",
-        "https://icecast.my-lan.dev/djo.ogg"
-    ],
-    [
-        "Jake Chudnow",
-        "https://icecast.my-lan.dev/jakeChudnow.ogg"
-    ],
-    [
-        "Jim Croce",
-        "https://icecast.my-lan.dev/jimCroce.ogg"
-    ],
-    [
-        "Pacman",
-        "https://icecast.my-lan.dev/pacman.ogg"
-    ]
+  [
+    "low fidelity",
+    "https://icecast.my-lan.dev/lofi.ogg",
+    "miscellaneous lofi songs"
+  ],
+  [
+    "lofi girl streams",
+    "https://icecast.my-lan.dev/lofi-girl.ogg",
+    "lofi-girl streams"
+  ],
+  [
+    "synthwave",
+    "https://icecast.my-lan.dev/synth.ogg",
+    "miscellaneous synthwave songs"
+  ],
+  [
+    "eurobeat",
+    "https://icecast.my-lan.dev/eurobeat.ogg",
+    "thousands of hours of eurobeat songs"
+  ],
+  [
+    "amiga music",
+    "https://icecast.my-lan.dev/amiga.ogg",
+    "miscellaneous music from the Amiga home computer"
+  ],
+  [
+    "cracktro compilations",
+    "https://icecast.my-lan.dev/cracktro-compilations.ogg",
+    "miscellaneous themes from cracktro intros"
+  ],
+  [
+    "cracktro",
+    "https://icecast.my-lan.dev/cracktro.ogg",
+    "another cracktro intro theme station"
+  ],
+  [
+    "chillhop",
+    "https://icecast.my-lan.dev/chillhop.ogg",
+    "the name says it"
+  ],
+  [
+    "80s Radio Hits",
+    "https://icecast.my-lan.dev/80s.ogg",
+    "radio hits from the 1980s" 
+  ],
+  [
+    "Ultimate 80s Party",
+    "https://icecast.my-lan.dev/ultimate-80s.ogg",
+    "\"party\"\" songs of the 1980s"
+  ],
+  [
+    "1940s Radio Station",
+    "https://uk3.internet-radio.com/proxy/1940sradio?mp=/live",
+    "radio from the 1940s"
+  ],
+  [
+    "The Beatles",
+    "https://icecast.my-lan.dev/theBeatles.ogg",
+    "all of the Beatles" 
+  ],
+  [
+    "super mario world",
+    "https://icecast.my-lan.dev/super-mario-world.ogg",
+    "the Super Mario World OST"
+  ],
+  [
+    "super mario maker ost",
+    "https://icecast.my-lan.dev/super-mario-maker-ost.ogg",
+    "the Super Mario Maker OST"
+  ],
+  [
+    "the very best of 90s",
+    "https://icecast.my-lan.dev/the-very-best-of-90s.ogg",
+    "the best songs of the 1990s" 
+  ],
+  [
+    "80s Pop",
+    "https://icecast.my-lan.dev/80sPop.ogg",
+    "pop songs from the 80s"
+  ],
+  [
+    "80s Rock",
+    "https://icecast.my-lan.dev/80sRock.ogg",
+    "1980s rock songs"
+  ],
+  [
+    "Bruce Springsteen",
+    "https://icecast.my-lan.dev/bruceSpringsteen.ogg",
+    "all of Bruce Springsteen"
+  ],
+  [
+    "Ghostbusters OST",
+    "https://icecast.my-lan.dev/ghostbusters-OST.ogg",
+    "that song that plays in the back ground of the original Ghostbusters movies, on loop"
+  ],
+  [
+    "Graham Kartna",
+    "https://icecast.my-lan.dev/grahamKartna.ogg",
+    "don't remember who this guy is, but it's his songs"
+  ],
+  [
+    "Springfield OST",
+    "https://icecast.my-lan.dev/springfieldOST.ogg",
+    "The Springfield OST"
+  ],
+  [
+    "Tetris CDi",
+    "https://icecast.my-lan.dev/TetrisCDi.ogg",
+    "the Tetris CDi soundtrack"
+  ],
+  [
+    "The Best Of The 60s, 70s, 80s, & 90s",
+    "https://icecast.my-lan.dev/bestOf60s70s80s90s.ogg",
+    "the best music of the best decades"
+  ],
+  [
+    "christmas low fidelity",
+    "https://icecast.my-lan.dev/christmas_lofi.ogg",
+    "christmas lofi" 
+  ],
+  [
+    "djo",
+    "https://icecast.my-lan.dev/djo.ogg",
+    "some music from djo's YouTube channel"
+  ],
+  [
+    "Jake Chudnow",
+    "https://icecast.my-lan.dev/jakeChudnow.ogg",
+    "some of Jake Chudnow's music"
+  ],
+  [
+    "Jim Croce",
+    "https://icecast.my-lan.dev/jimCroce.ogg",
+    "all of Jim Croce"
+  ],
+  [
+    "Pacman",
+    "https://icecast.my-lan.dev/pacman.ogg",
+    "Pacman songs"
+  ],
+  [
+    "chill classical",
+    "https://icecast.my-lan.dev/Chill_Classical.ogg",
+    "relaxing some classical music"
+  ],
+  [
+    "Hi-Res Classical",
+    "https://icecast.my-lan.dev/Hi-Res_Classical.ogg",
+    "HiFi classical tunes"
+  ]
 ]
