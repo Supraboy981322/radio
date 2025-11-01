@@ -8,7 +8,6 @@ import (
 	"io/ioutil"
 	"strconv"
 
-  tea "github.com/charmbracelet/bubbletea"
 	"github.com/BurntSushi/toml"
   "github.com/charmbracelet/lipgloss"
 	"github.com/charmbracelet/bubbles/list"
@@ -184,20 +183,19 @@ func refreshStations() []list.Item {
 
 	//get the library from server 
 	resp, err := http.Get(server + "library.json")
-	hanFerr(err)
+	hanFrr(err)
 	defer resp.Body.Close()
 	
 	wrTsk()
 	//read the library
 	body, err := ioutil.ReadAll(resp.Body)
-	hanFerr(err)
+	hanFrr(err)
 	
 	wrTsk()
 	//unmarshal library
 	var library [][]string
 	err = json.Unmarshal(body, &library)
-	hanFerr(err)
-	}
+	hanFrr(err)
 
 	wrTsk()
 	//generate the library list for Bubble Tea
