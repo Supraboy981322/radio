@@ -65,7 +65,7 @@ type (
 //  for printing each startup tasks
 func wrTsk() {               //basically...
 	wrl("\033[36m[\033[33m" +  //just `[` with an ansii color code
-		strconv.Itoa(curTask) +  //conv task int to str the append to line 
+		strconv.Itoa(curTask) +  //conv task int to str then append to line 
 		"\033[36m/\033[32m" +    //just `/` with an ansii color code
 		strconv.Itoa(len(startupTasks) - 1) +  //len of list from earlier
 		"\033[36m]:\033[0m " +   //just `]` with an ansii color code
