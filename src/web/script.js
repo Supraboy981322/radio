@@ -285,6 +285,7 @@ async function settings(open) {
         }
     } else {
         settingsElm.innerHTML = "";
+        menuSettingItem.innerText = "settings";
         settingsWall.setAttribute("style", "display: none;");
         wall.removeAttribute("style");
         menuSettingItem = document.querySelector(`#menu #item[onclick='link("home")']`);
