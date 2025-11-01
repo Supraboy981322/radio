@@ -1,3 +1,10 @@
+/*These fns are for me to save time writing
+ *  this, as I find writing `fmt.Println(...)`
+ *  (or the `log`/`slog` equivalent) or 
+ *  and `if err != nil {...}` extremely time
+ *  consuming and I'd rather spend that time
+ *  writing functionality or doing homework */
+
 package main
 
 import (

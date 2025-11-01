@@ -8,17 +8,17 @@ import (
 
 var (
 	docStyle = lipgloss.NewStyle().Margin(1, 2)
+	//these values are overwritten at start
 	ListTitleColor = lipgloss.Color("#05b4ff")
 	ListItemNameColor = lipgloss.Color("#4287f5")
 	ListItemDescColor = lipgloss.Color("#2d579c")
 )
 
-
 type item struct {
 	title, desc string
 }
 
-func (i item) Title() string       { return i.title }
+func (i item) Title()       string { return i.title }
 func (i item) Description() string { return i.desc }
 func (i item) FilterValue() string { return i.title }
 
