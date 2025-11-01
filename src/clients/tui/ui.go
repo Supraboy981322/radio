@@ -6,6 +6,10 @@ import (
   "github.com/charmbracelet/lipgloss"
 )
 
+const (
+	projectView sessionState = iota
+)
+
 var (
 	docStyle = lipgloss.NewStyle().Margin(1, 2)
 	//these values are overwritten at start
@@ -13,14 +17,18 @@ var (
 	ListItemNameColor = lipgloss.Color("#4287f5")
 	ListItemDescColor = lipgloss.Color("#2d579c")
 )
+type (
+	sessionState int
 
-type item struct {
-	title, desc string
-}
-
-type model struct {
-	list list.Model
-}
+	item struct {
+		title, desc string
+	}
+	model struct {
+//		State sessionState
+		list list.Model
+	
+	}
+)
 
 
 func (i item) Title()       string { return i.title }
@@ -42,6 +50,12 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	case tea.WindowSizeMsg:
 		h, v := docStyle.GetFrameSize()
 		m.list.SetSize(msg.Width-h, msg.Height-v)
+/*	case ffplayStruct.Status:
+		switch msg {
+		case "start":
+			
+		case "stop":
+		}*/
 	}
 
 	var cmd tea.Cmd
@@ -51,7 +65,11 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 
 func (m model) View() string {
-	return docStyle.Render(m.list.View())
+/*	switch m.State {
+	case playerView:
+		return docStyle.Render(m.
+	case libraryView:*/
+		return docStyle.Render(m.list.View())
 }
 
 

@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"strconv"
 
+//	tea "github.com/charmbracelet/bubbletea"
 	"github.com/BurntSushi/toml"
   "github.com/charmbracelet/lipgloss"
 	"github.com/charmbracelet/bubbles/list"
@@ -55,6 +56,11 @@ type (
 	Config struct {
 		Server  ConfigServer
 		Style   ConfigStyle
+	}
+
+	ffplayStruct struct {
+		Status string
+		Err error
 	}
 )
 
@@ -233,3 +239,42 @@ func checkInstall() {
 		hanFrr(os.WriteFile(confPath, defaultConfig, 0644))
 	}
 }
+/*
+//replace
+func checkServer() tea.Msg {
+	c := &http.Client{Timeout: 10 * time.Second}
+	res, err := c.Get(url)
+
+	if err != nil {
+		return errMsg{err}
+	}
+
+	return statusMsg(res.StatusCode)
+}
+
+type (
+	statusMsg int
+	errMsg struct { err error }
+)
+
+func (e errMsg) Error() string {
+	return e.err.Error()
+}
+
+func (m model) Init() tea.Cmd {
+	return checkServer
+}
+
+func (m model) Update(msg tea.Msg)  (tea.Model tea.Cmd) {
+	switch msg := msg.(type) {
+	case statusMsg:
+		m.status = int(msg)
+		return m, tea.Quit
+	case errMsg:
+		m.err = msg
+		return m, tea.Quit
+	case tea.KeyMsg:
+	default:
+	}
+	return m, nil
+}*/
