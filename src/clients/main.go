@@ -62,7 +62,7 @@ type (
 //I know this looks like trash, but
 //  it's better than writing 
 //  `fmt.Println(...)` (or the `log`/`slog` equivalent)
-//  for printing startup tasks to
+//  for printing each startup tasks
 func wrTsk() {               //basically...
 	wrl("\033[36m[\033[33m" +  //just `[` with an ansii color code
 		strconv.Itoa(curTask) +  //conv task int to str the append to line 
