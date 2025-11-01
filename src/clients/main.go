@@ -153,7 +153,7 @@ func help() {
 
 	//another "needlessly complex" block
 	//  but it's to save typing (in my case)
-	//  `wr(...)` so many times, basically
+	//  `wrl(...)` so many times, basically
 	//  create a str arr (1 val == 1 line)
 	//  then iterate through the arr and
 	//  print each val as a ln
