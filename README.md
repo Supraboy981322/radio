@@ -22,4 +22,8 @@ An internet radio server, and web client.
 
 `[x]` nicer logs
 
+`[ ]` desktop app
+
+`[ ]` mobile app (?)
+
 `[ ]` move away from Icecast (perchance)
