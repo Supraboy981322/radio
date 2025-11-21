@@ -24,8 +24,6 @@ func initStream() {
 		//start goroutine
 		go stream(dir, icecast+"/"+name)
 	}
-
-	log.Info("stopping...")
 }
 
 func stream(dir string, url string) {
@@ -41,7 +39,7 @@ func stream(dir string, url string) {
 	log.Debug("stream() started")
 
 	tranArgs := []string{
-		"-loglevel", "panic",  //basically no log
+		"-loglevel", "error",  //basically no log
 		"-re", //real-time
 		"-i", file, //filepath
 		"-c:a", "libvorbis", //codec
@@ -53,7 +51,7 @@ func stream(dir string, url string) {
 	}
 
 	stremArgs := []string{
-		"-loglevel", "panic",  //basically no log
+		"-loglevel", "error",  //basically no log
 		"-i", "pipe:0", //read stdin
 		"-content_type", "audio/ogg", //header
 		"-f", "ogg", //filetype
@@ -87,7 +85,7 @@ func stream(dir string, url string) {
 	} else { log.Info("stream process started") }
 
 	log.Debug("waiting for stream to complete")
-	if err := strem.Wait(); err != nil {
+	if err := tran.Wait(); err != nil {
 		log.Errorf("FFmpeg process exited with error code: %v\n", err)
 	} else { log.Info("FFmpeg process finished.\n") }
 
@@ -99,7 +97,7 @@ func stream(dir string, url string) {
 
 	log.Debugf("proc: %d ended", proc)
 
-	go stream(dir, url) 
+	go stream(dir, url)
 }
 
 func pickFile(dir string) string {

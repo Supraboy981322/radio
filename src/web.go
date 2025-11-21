@@ -11,22 +11,27 @@ import (
 )
 
 func initWeb() {
+  log.Info("starting web server")
+
   http.HandleFunc("/action", actionHandler)
   http.HandleFunc("/", webInterface)
 
+	log.Debug("getting device addresses")
   ipAddressArray, err := net.InterfaceAddrs()
   if err != nil {
     log.Errorf("err detecting ip address:  %v", err)
-  }
- 
-  for _, ipAddress := range ipAddressArray {
+  } else { log.Debug("device addresses found")
+	
+	log.Debug("filtering addresses")
+	for _, ipAddress := range ipAddressArray {
     if ipNet, ok := ipAddress.(*net.IPNet); ok && !ipNet.IP.IsLoopback() {
       if ipNet.IP.To4() != nil {
-        log.Info("listening on http:%s:%s", ipNet.IP, strconv.Itoa(port))
-      }
+        log.Infof("listening on http:%s:%s", ipNet.IP, strconv.Itoa(port))
+      } 
     }
   }
 
+	log.Debug("starting web server func")
   log.Fatal(http.ListenAndServe(":"+strconv.Itoa(port), nil))
 }
 

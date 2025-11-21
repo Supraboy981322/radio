@@ -29,8 +29,15 @@ func init() {
 }
 
 func main() {
+	//start stream server
 	initStream()
+
+	//start web server
 	initWeb()
+
+	//if the web server stops,
+	//  the whole program stops
+	log.Info("stopping...")
 }
 
 func validateConfig() bool {
