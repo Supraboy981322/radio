@@ -1,0 +1,25 @@
+[
+    {
+        "name": "theme",
+        "value": "0",
+        "type": "int",
+        "desc": null,
+        "indicator": "dark",
+        "min": 0,
+        "max": 2
+    },
+    {
+        "name": "customCSS",
+        "value": "placeholder",
+        "type": "string",
+        "desc": "url for custom css",
+        "indicator": null
+    },
+    {
+        "name": "icecast server",
+        "value": "[redacted icecast server]",
+        "type": "string",
+        "desc": "the domain for your icecast server",
+        "indicator": null
+    }
+]

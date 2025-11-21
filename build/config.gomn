@@ -1,0 +1,10 @@
+["config"] := |
+  ["web server port"] := 4845
+  ["log level"] := "info"
+  ["icecast"] := "icecast://source:[password]@[ip]:[icecast port]"
+|
+
+["library"] := |
+  ["your_playlist_name"] := "your/playlist/path"
+  ["your_other_playlist_name"] := "your/other_playlist/path"
+|

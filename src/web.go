@@ -22,17 +22,17 @@ func initWeb() {
     log.Errorf("err detecting ip address:  %v", err)
   } else { log.Debug("device addresses found")
 	
-	log.Debug("filtering addresses")
-	for _, ipAddress := range ipAddressArray {
-    if ipNet, ok := ipAddress.(*net.IPNet); ok && !ipNet.IP.IsLoopback() {
-      if ipNet.IP.To4() != nil {
-        log.Infof("listening on http:%s:%s", ipNet.IP, strconv.Itoa(port))
-      } 
-    }
-  }
-
-	log.Debug("starting web server func")
-  log.Fatal(http.ListenAndServe(":"+strconv.Itoa(port), nil))
+		log.Debug("filtering addresses")
+		for _, ipAddress := range ipAddressArray {
+	    if ipNet, ok := ipAddress.(*net.IPNet); ok && !ipNet.IP.IsLoopback() {
+	      if ipNet.IP.To4() != nil {
+	        log.Infof("listening on http:%s:%s", ipNet.IP, strconv.Itoa(port))
+	      } 
+	    }
+	  }	
+		log.Debug("starting web server func")
+	  log.Fatal(http.ListenAndServe(":"+strconv.Itoa(port), nil))
+	}
 }
 
 func webInterface(w http.ResponseWriter, r *http.Request) {

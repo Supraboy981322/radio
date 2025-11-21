@@ -16,6 +16,10 @@ An internet radio server, and web client.
 
 `[ ]` settings handling server-side
 
-`[~]` replace the ancient Bash script I wrote forever ago before I public-sourced this
+`[x]` replace the ancient Bash script I wrote forever ago before I public-sourced this
+
+`[x]` clean-up server code
+
+`[x]` nicer logs
 
 `[ ]` move away from Icecast (perchance)
