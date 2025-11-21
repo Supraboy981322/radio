@@ -87,16 +87,20 @@ func readConf() {
 		log.Fatal("failed to get log level")
 	} else {
 		switch strings.ToLower(logLvl) {
-		case "info":
+		case "info", "i":
 			logLevel = log.InfoLevel
-		case "debug":
+		case "debug", "d":
 			logLevel = log.DebugLevel
-		case "error": 
+			log.Debug("enabling log.SetReportCaller()")
+			log.SetReportCaller(true)
+		case "error", "e": 
 			logLevel = log.ErrorLevel
-		case "warn":
+		case "warn", "w":
 			logLevel = log.WarnLevel
-		case "fatal":
+		case "fatal", "f":
 			logLevel = log.FatalLevel
+		default:
+			logLevel = log.InfoLevel
 		}
 
 		log.SetLevel(logLevel)
