@@ -1,98 +1,122 @@
 package main
 
 import (
-    "fmt"
-    "bytes"
-    "time"
-    "net/http"
-    "io/ioutil"
-    "net"
-		"os/exec"
-//	"os"
-//	"encoding/json"
-    //exclusively used for http.ListenAndServe so I can
-    //  write one less if err != nil { ... }
-    "log"
+	"os"
+	"strings"
+	"github.com/charmbracelet/log"
+	"github.com/Supraboy981322/gomn"
 )
 
-func webInterface(w http.ResponseWriter, r *http.Request) {
-    var requestedPage string
-    if r.URL.Path == "/" {
-        requestedPage = "web/index.html"
-    } else if r.URL.Path == "/settings.json" {
-        requestedPage = "settings.json"
-    } else {
-        requestedPage = "web/" + r.URL.Path[1:]
-    }
+var (
+	port int
+	icecast string
+	config gomn.Map
+	library gomn.Map
+	running = []int{}
+	logLevel = log.DebugLevel
+	projectName = "[insert clever radio server name here]"
+)
 
-    webpageContent, err := ioutil.ReadFile(requestedPage)
-    if err != nil {
-        fmt.Errorf("err reading file for requested webpage:  \n", err)
-    }
-    
-    fmt.Printf("requestedPage:  %s\n", requestedPage)
+func init() {
+	log.Infof("initializing %s...", projectName)
+	log.SetLevel(log.DebugLevel)
 
-    http.ServeContent(w, r, requestedPage, time.Now(), bytes.NewReader(webpageContent))
-}
+	log.Debug("reading config...")
+	readConf()
 
-func actionHandler(w http.ResponseWriter, r *http.Request) {
-    fmt.Println("recieved action request")
-    w.Write([]byte("recieved"));
-    requestedAction := r.Header.Get("action")
-    doThing := r.Header.Get("do")
-    if requestedAction == "settings" {
-        fmt.Printf("requestedAction == \"%s\"\ndoThing == \"%s\"\n", requestedAction, doThing)
-    } else {
-        fmt.Errorf("attempted to action does not exist.")
-    }
+	//set log level
+	log.SetLevel(logLevel)
 }
 
 func main() {
-
-    http.HandleFunc("/action", actionHandler)
-    http.HandleFunc("/", webInterface)
-
-    ipAddressArray, err := net.InterfaceAddrs()
-    if err != nil {
-        fmt.Errorf("err detecting ip address:  \n", err)
-    }
-    
-    port := "4845"
-    
-    for _, ipAddress := range ipAddressArray {
-        if ipNet, ok := ipAddress.(*net.IPNet); ok && !ipNet.IP.IsLoopback() {
-            if ipNet.IP.To4() != nil {
-                fmt.Printf("listening on http:%s:%s\n", ipNet.IP, port)
-            }
-        }
-    }
-	stream("redacted .ogg file path:", "[redacted icecast server address]")
-    log.Fatal(http.ListenAndServe(":"+port, nil))
+	initStream()
+	initWeb()
 }
 
-func stream(file string, url string) {
-	cmdArgs := []string{
-		"-re",
-		"-i", file,
-		"-c:a", "copy",
-		"-content_type", "audio/ogg",
-		"-f", "ogg",
-		url,
-	}
-
-	cmd := exec.Command("ffmpeg", cmdArgs...)
-	
-	err := cmd.Start()
-	if err != nil {
-		fmt.Errorf("failed to start FFmpeg: %v\n", err)
-	}
-
-	fmt.Printf("FFmpeg process started.\n")
-
-	err = cmd.Wait()
-	if err != nil {
-		fmt.Errorf("FFmpeg process exited with error code: %v\n", err)
+func validateConfig() bool {
+	ok := true
+	switch (icecast) {
+	case "icecast://source:[password]@[ip]:[icecast port]", "", " ":
+		log.Error("icecast url not set")
+		log.Error("please set it in your 'config.gomn' file")
+		log.Error("format:  'icecast://source:[password]@[ip]:[port]'")
+		ok = false
 	}
 	
-	fmt.Printf("FFmpeg process finished.\n")
+	if len(library) <= 0 {
+		log.Error("library is empty")
+		log.Error("please set your library in your 'config.gomn' file")
+		ok = false
+	}
+
+	return ok
+}
+
+func readConf() {
+	var err error  //these get around a
+	var ok bool    //  bug in golang
+
+	//read config file
+	var configBytes []byte
+	if configBytes, err = os.ReadFile("config.gomn"); err != nil {
+		log.Fatalf("failed to read library:  %v", err)
+	} else { log.Debug("success reading library") }
+	
+	//get the config file map
+	log.Debug("parsing config") 
+	if config, err = gomn.Parse(string(configBytes)); err != nil {
+		log.Fatalf("failed to read parse config:  %v", err)
+	} else { log.Debug("success parsing config") }
+	
+	//get the library map
+	log.Debug("parsing library")
+	if library, ok = config["library"].(gomn.Map); !ok {
+		log.Fatal("failed parsing library")
+	} else { log.Debug("failed parsing library") }
+
+	//replace the config file map with just config map
+	log.Debug("separating config from library")
+	if config, ok = config["config"].(gomn.Map); !ok {
+		log.Fatal("failed to separate config from library")
+	} else { log.Debug("library and config separated") }
+	
+	//get the log level
+	log.Debug("getting log level")
+	var logLvl string
+	if logLvl, ok = config["log level"].(string); !ok {
+		log.Fatal("failed to get log level")
+	} else {
+		switch strings.ToLower(logLvl) {
+		case "info":
+			logLevel = log.InfoLevel
+		case "debug":
+			logLevel = log.DebugLevel
+		case "error": 
+			logLevel = log.ErrorLevel
+		case "warn":
+			logLevel = log.WarnLevel
+		case "fatal":
+			logLevel = log.FatalLevel
+		}
+
+		log.SetLevel(logLevel)
+		log.Info("log level set")
+	}
+
+	//get the icecast server
+	log.Debug("setting icecast server url")
+	if icecast, ok = config["icecast"].(string); !ok {
+		log.Fatal("failed to assert icecast server string")
+	} else { log.Debug("icecast server url set") }
+
+	//get the web server port
+	log.Debug("getting web server port")
+	if port, ok = config["web server port"].(int); !ok {
+		log.Fatal("failed to assert icecast server integer")
+	} else { log.Debug("web server port set") }
+
+	//config checks
+	if ok = validateConfig(); !ok {
+		log.Fatal("invalid configuration")
+	}
 }
