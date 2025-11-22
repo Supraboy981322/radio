@@ -45,7 +45,7 @@ func webInterface(w http.ResponseWriter, r *http.Request) {
 	case "/":
     reqPage = "web/index.html"
 	case "/settings.json":
-    reqPage = "settings.json"
+    pageCont = buildJSONsettings()
 	case "/library.json":
 		pageCont = buildJSONlibrary()
 	default:
@@ -145,7 +145,7 @@ func buildJSONlibrary() []byte {
 
 func buildJSONsettings() []byte {
 	res := []string{
-		"[", "  \"config\": {",
+		"{", "  \"config\": {",
 	}
 	for keyRaw, valRaw := range config {
 		var key, valStr, object string
@@ -186,7 +186,7 @@ func buildJSONsettings() []byte {
 		if path, ok = pathRaw.(string); !ok {
 			log.Fatal("failed to type assert path of station")
 		}
-		object += "      \""+path+"\",\n"
+		object += "      \""+path+"\"\n"
 
 		object += "    ],"
 		res = append(res, object)
@@ -202,7 +202,7 @@ func buildJSONsettings() []byte {
 		if url, ok = urlRaw.(string); !ok {
 			log.Fatal("failed to type assert path of station")
 		}
-		object += "      \""+url+"\"\n"
+		object += "      \""+url+"\",\n"
 		
 		object += "      null\n"
 
@@ -215,7 +215,7 @@ func buildJSONsettings() []byte {
 	//remove last char from last line (a comma) 
 	// and close json
 	res = delLastCharInSlice(res)
-	res = append(res, "]")
+	res = append(res, "}")
 
 	return []byte(strings.Join(res, "\n"))
 }

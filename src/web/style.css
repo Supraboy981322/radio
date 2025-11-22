@@ -280,53 +280,86 @@ body {
 }
 
 #settingsWall {
+  text-align: center;
+  padding-top: 1.5em;
+  margin-bottom: 2em;
+
+  button {
+    border: none;
+    border-radius: 1em;
+    padding: 0.25em 1em;
+    transition: all 0.25s;
+    font-size: 1.1em;
+    font-weight: bold;
+    background-color: var(--quaternary);
+    color: var(--backgroundPrimary);
+    cursor: pointer;
+    &:hover {
+      background-color: var(--tertiary);
+    }
+  }
+
+  [type="input"] {
+    font-size: 0.8em;
+    border-radius: 0.5em;
+    border: none;
+    padding: 0.25em 0.5em;
     text-align: center;
-    padding-top: 1.5em;
-    button {
-        border: none;
-        border-radius: 1em;
-        padding: 0.25em 1em;
-        transition: all 0.25s;
-        font-size: 1.1em;
-        font-weight: bold;
-        background-color: var(--quaternary);
+    width: 35vw;
+  }
+
+  .toggleButton {
+    border-radius: 0.5em;
+    padding: 0.25em 0.5em;
+    text-align: center;
+    margin-bottom: 0.75em;
+    font-weight: bold;
+    width: fit-content;
+    padding: 0.35em 2em;
+    margin-right: auto;
+    margin-left: auto;
+    cursor: pointer;
+    transition: all 0.25s;
+
+    &[enabled="false"] {
+      background-color: var(--senary);
+      color: var(--backgroundPrimary);
+    }
+    &[enabled="true"] {
+      background-color: var(--primary);
+      color: var(--textMain);
+    }
+
+    &:hover {
+      &[enabled="true"] {
+        background-color: var(--quinary);
         color: var(--backgroundPrimary);
-        cursor: pointer;
-    }
-
-    button:hover {
+      }
+      &[enabled="false"] {
         background-color: var(--tertiary);
+        color: var(--backgroundPrimary);
+      }
     }
+  }
 
-    [type="input"] {
-        border-radius: 0.5em;
-        border: none;
-        padding: 0.25em 0.5em;
-        text-align: center;
-        margin-bottom: 0.75em;
+  .settingItem {
+    background-color: var(--secondary);
+    margin-top: 1em;
+    border-radius: 1em;
+    padding: 0.05em 1em 0.5em 1em;
+    width: fit-content;
+    margin-right: auto;
+    margin-left: auto;
+    .settingName {
+      background-color: var(--backgroundPrimary);
+      padding: 0.5em 0.5em;
+      border-radius: 0.5em;
+      font-weight: bold;
     }
-
-    #settings {
-        display: block;
-        .settingItem {
-            background-color: var(--secondary);
-            margin-top: 1em;
-            border-radius: 1em;
-            padding: 0.05em 1em 0.5em 1em;
-            width: fit-content;
-            margin-right: auto;
-            margin-left: auto;
-            .settingName {
-                background-color: var(--backgroundPrimary);
-                padding: 0.5em 0.5em;
-                border-radius: 0.5em;
-                font-weight: bold;
-            }
-            .settingDesc {
-                font-size: 0.75em;
-            }
-        }
+    .settingDesc {
+      font-size: 0.75em;
     }
+  }
 }
 
 @media screen and (orientation: landscape) {
