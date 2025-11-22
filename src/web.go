@@ -46,8 +46,6 @@ func webInterface(w http.ResponseWriter, r *http.Request) {
     reqPage = "settings.json"
 	case "web/":
     reqPage = "web/" + reqPage[1:]
-	default:
-		reqPage = "web/index.html"
   }
 
 	var pageCont []byte;var err error
