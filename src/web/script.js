@@ -1,4 +1,4 @@
-const githubURL = "https://supraboy981322.github.io/subpages/text-break?t=todo%3A%20github%20page";
+const githubURL = "https://github.com/Supraboy981322/radio";
 const musicElm = document.getElementById("music");
 const wall = document.getElementById("wall");
 const settingsWall = document.getElementById("settingsWall");
