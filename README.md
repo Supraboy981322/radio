@@ -27,3 +27,5 @@ An internet radio server, and web client.
 `[ ]` mobile app (?)
 
 `[ ]` move away from Icecast (perchance)
+
+`[ ]` a better name
