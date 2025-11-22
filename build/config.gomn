@@ -1,10 +1,18 @@
 ["config"] := |
   ["web server port"] := 4845
   ["log level"] := "info"
-  ["icecast"] := "icecast://source:[password]@[ip]:[icecast port]"
+  ["enable external radios"] := false
+  ["icecast interface"] := "icecast://source:[password]@[ip]:[icecast port]"
+  ["icecast domain"] := "https://[your icecast domain]"
 |
 
 ["library"] := |
   ["your_playlist_name"] := "your/playlist/path"
   ["your_other_playlist_name"] := "your/other_playlist/path"
+|
+
+//set "enable external radio" to
+//  true to use external servers 
+["external library"] := |
+  ["someone elses internet radio"] := "https://[their internet radio url]"
 |
