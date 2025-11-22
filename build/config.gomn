@@ -1,6 +1,7 @@
 ["config"] := |
   ["web server port"] := 4845
   ["log level"] := "info"
+  ["theme"] := "dark"
   ["enable external radios"] := false
   ["icecast interface"] := "icecast://source:[password]@[ip]:[icecast port]"
   ["icecast domain"] := "https://[your icecast domain]"
