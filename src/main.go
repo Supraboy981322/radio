@@ -13,6 +13,9 @@ var (
 	config gomn.Map
 	library gomn.Map
 	running = []int{}
+	useExternalLib bool
+	externalLib gomn.Map
+	icecastDomain string
 	logLevel = log.DebugLevel
 	projectName = "[insert clever radio server name here]"
 )
@@ -44,10 +47,22 @@ func validateConfig() bool {
 	ok := true
 	switch (icecast) {
 	case "icecast://source:[password]@[ip]:[icecast port]", "", " ":
-		log.Error("icecast url not set")
+		log.Error("icecast interface url not set")
 		log.Error("please set it in your 'config.gomn' file")
 		log.Error("format:  'icecast://source:[password]@[ip]:[port]'")
 		ok = false
+	}
+	
+	switch (icecastDomain) {
+	case "https://[your icecast domain]", "", " ":
+		log.Error("icecast domain not set")
+		log.Error("please set it in your 'config.gomn' file")
+		log.Error("format:  'https://[your icecast domain]'")
+		ok = false
+	}
+
+	if useExternalLib {
+		log.Info("external libraries enabled")
 	}
 	
 	if len(library) <= 0 {
@@ -80,6 +95,12 @@ func readConf() {
 	if library, ok = config["library"].(gomn.Map); !ok {
 		log.Fatal("failed parsing library")
 	} else { log.Debug("failed parsing library") }
+	
+	//get the external library bool
+	log.Debug("getting external radio bool")
+	if externalLib, ok = config["external library"].(gomn.Map); !ok {
+		log.Fatal("failed to assert web server integer")
+	} else { log.Debug("set external libraries") }
 
 	//replace the config file map with just config map
 	log.Debug("separating config from library")
@@ -114,17 +135,29 @@ func readConf() {
 		log.Info("log level set")
 	}
 
-	//get the icecast server
-	log.Debug("setting icecast server url")
-	if icecast, ok = config["icecast"].(string); !ok {
-		log.Fatal("failed to assert icecast server string")
-	} else { log.Debug("icecast server url set") }
+	//get the icecast server interface
+	log.Debug("setting icecast server interface url")
+	if icecast, ok = config["icecast interface"].(string); !ok {
+		log.Fatal("failed to assert icecast interface string")
+	} else { log.Debug("icecast interface url set") }
+	
+	//get the icecast server domain
+	log.Debug("setting icecast server domain")
+	if icecastDomain, ok = config["icecast domain"].(string); !ok {
+		log.Fatal("failed to assert icecast domain string")
+	} else { log.Debug("icecast domain set") }
 
 	//get the web server port
 	log.Debug("getting web server port")
 	if port, ok = config["web server port"].(int); !ok {
-		log.Fatal("failed to assert icecast server integer")
+		log.Fatal("failed to assert web server integer")
 	} else { log.Debug("web server port set") }
+
+	//get the external library bool 
+	log.Debug("getting external radio bool")
+	if useExternalLib, ok = config["enable external radios"].(bool); !ok {
+		log.Fatal("failed to assert web server integer")
+	} else { log.Debug("external radio bool set") }
 
 	//config checks
 	if ok = validateConfig(); !ok {

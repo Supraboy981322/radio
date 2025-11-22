@@ -4,6 +4,7 @@ import (
 	"net"
 	"time"
 	"bytes"
+	"strings"
 	"strconv"
 	"net/http"
 	"io/ioutil"
@@ -69,4 +70,68 @@ func actionHandler(w http.ResponseWriter, r *http.Request) {
   if reqAct == "settings" {
 		log.Infof("requestedAction == \"%s\"\ndoThing == \"%s\"", reqAct, todo)
   } else { log.Warn("attempted to action does not exist.") }
+}
+
+
+//because I dislike the current
+//  JSON interfacing for Go
+func buildJSONlibrary() []byte {
+	var ok bool
+
+	jsonStr := []string{"["}
+
+	for nameRaw, _ := range library {
+		//start object
+		jsonStr = append(jsonStr, "  [")
+
+		var name string
+		if name, ok = nameRaw.(string); !ok {
+			log.Fatal("failed to assert name to string")
+		} else {
+			log.Debug("success asserting type")
+
+			//add values
+			jsonStr = append(jsonStr, "    \""+name+"\",")
+			jsonStr = append(jsonStr, "    \""+icecastDomain+name+"\"")
+		}
+
+		//end object
+		jsonStr = append(jsonStr, "  ],")
+	}
+
+	if useExternalLib {
+		for nameRaw, urlRaw := range externalLib {
+			//start object
+			jsonStr = append(jsonStr, "  [")
+
+			log.Debug("asserting external library name to string")
+			var name, url string
+			if name, ok = nameRaw.(string); !ok {
+				log.Fatal("failed to assert external library name")
+			} else { log.Debug("success asserting type") }
+
+			log.Debug("asserting external library url to string")
+			if url, ok = urlRaw.(string); !ok {
+				log.Fatal("failed to assert external library url")
+			} else { log.Debug("success asserting type") }
+
+			//add values
+			jsonStr = append(jsonStr, "    \""+name+"\",")
+			jsonStr = append(jsonStr, "    \""+url+"\"")
+
+			//end object
+			jsonStr = append(jsonStr, "  ],")
+		}
+	}
+
+	//remove last char from last line (a comma)
+	jsonStr[len(jsonStr)-1] = jsonStr[len(jsonStr)-1][:len(jsonStr[len(jsonStr)-1])-1]
+
+	//end json
+	jsonStr = append(jsonStr, "]")
+
+	//turn []string{} json to []byte
+	jsonByte := []byte(strings.Join(jsonStr, "\n"))
+
+	return jsonByte
 }
