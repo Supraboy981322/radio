@@ -281,17 +281,7 @@ function settings(open) {
         }
 
         settingsElm.appendChild(settingCont);
-      }/*
-
-      
-   
-
-      if (settings[i][3] != null) { 
-        settingCont.appendChild(settingDesc);
       }
-      if (settings[i][4] != null) {
-        settingCont.appendChild(settingIndicator);
-      }*/
     })();
   } else {
     settingsElm.innerHTML = "";
