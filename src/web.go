@@ -44,7 +44,7 @@ func webInterface(w http.ResponseWriter, r *http.Request) {
     reqPage = "web/index.html"
 	case "/settings.json":
     reqPage = "settings.json"
-	case "web/":
+	default:
     reqPage = "web/" + reqPage[1:]
   }
 
