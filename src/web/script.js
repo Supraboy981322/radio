@@ -1,4 +1,4 @@
-const githubURL = "https://github.com/Supraboy981322/radio";
+const githubURL = "https://supraboy981322.github.io/subpages/text-break?t=todo%3A%20github%20page";
 const musicElm = document.getElementById("music");
 const wall = document.getElementById("wall");
 const settingsWall = document.getElementById("settingsWall");
@@ -22,13 +22,6 @@ async function fetchJSONasArray(url) {
         console.error("err fetching data:  ", error);
         return [];
     }
-}
-
-async function fetchSettings(url) {
-    const res = await fetch(url);
-    if (!res.ok) throw new Error(`failed to fetch ${url}:  ${res.status}`);
-    const data = await res.json();
-    return data
 }
 
 function init() {
@@ -204,97 +197,78 @@ function link(what) {
         case "clients":
             console.log(`    todo:  ${what}"`);
             break;
-        case "home":
-            settings(false);
-            break;
         default:
-            console.error(`    attempted to execute fn link() with undefined value:  ${what}`);
+            console.Error(`    attempted to execute fn link() with undefined value:  ${what}`);
     }
     menu(false);
 }
 
-async function settings(open) {
+function settings(open) {
     if (open) {
-        menuSettingItem = document.querySelector(`#menu #item[onclick='link("settings")']`);
-        menuSettingItem.innerText = "home";
-        menuSettingItem.setAttribute("onclick", 'link("home")');
         wall.setAttribute("style", "display: none");
-        try {
-            const settings = await fetchSettings("settings.json");
+        (async () => {
+            const settings = await fetchJSONasArray("settings.json");
             
             if (Array.isArray(settings)) {
                 settingsWall.removeAttribute("style");
                 console.log("success fetching settings json as array");
-                settingsElm.innerHTML = "";
-                
                 for (let i = 0; i < settings.length; i++) {
-                    let setting = settings[i];
-                    if (typeof setting !== "object" || setting === null) continue;
                     let settingCont = document.createElement("div");
-                    settingCont.className = "settingItem";
-
+                    settingCont.setAttribute("class", "settingItem");
+                    
                     let settingName = document.createElement("p");
-                    settingName.innerText = setting.name ?? `setting_${i}`;
-                    settingName.className = "settingName";
-                    settingCont.appendChild(settingName);
+                    settingName.innerText = settings[i][0];
+                    settingName.setAttribute("class", "settingName");
 
                     let settingInput = document.createElement("input");
-                    settingInput.id = `${setting.name}Value`;
-                    settingInput.name = setting.name ?? "";
-                    switch (setting.type) {
+                    settingInput.setAttribute("id", `${settings[i][0]}Value`);
+                    switch (settings[i][2]) {
                         case "int":
-                            settingInput.type = "range";
-                            settingInput.min = String(setting.min);
-                            settingInput.max = String(setting.max);
-                            settingInput.step = "1";
+                            settingInput.setAttribute("type", "range");
+                            settingInput.setAttribute("min", "0");
+                            settingInput.setAttribute("max", "2");
+                            settingInput.setAttribute("step", "1");
                             break;
                         case "string":
-                            settingInput.type = "text";
+                            settingInput.setAttribute("type", "input");
                             break;
                         default:
-                            console.error(`err! undefined setting type:  ${setting.type}`);
+                            console.error(`err! the setting has an undefined type:  ${settings[i][2]}`);
                     }
-                    if (setting.value != null) settingInput.value = String(setting.Value);
+                    settingInput.setAttribute("value", settings[i][1]);
+                    settingInput.setAttribute("name", settings[i][0]);
 
-                    if (setting.desc != null) {
-                        let settingDesc = document.createElement("p");
-                        settingDesc.className = "settingDesc";
-                        settingDesc.innerText = setting.desc;
+                    let settingDesc = document.createElement("p");
+                    settingDesc.setAttribute("class", "settingDesc");
+                    settingDesc.innerText = settings[i][3];
+                    
+                    let settingIndicator = document.createElement("p");
+                    settingIndicator.setAttribute("class", "settingIndicator");
+                    settingIndicator.setAttribute("id", `${settings[i][0]}Indicator`);
+                    settingIndicator.innerText = settings[i][4];
+
+
+                    settingCont.appendChild(settingName);
+                    if (settings[i][3] != null) { 
                         settingCont.appendChild(settingDesc);
                     }
-
-
-                    if (setting.indicator != null) {
-                        let settingIndicator = document.createElement("p");
-                        settingIndicator.setAttribute("class", "settingIndicator");
-                        settingIndicator.setAttribute("id", `${setting.name}Indicator`);
-                        settingIndicator.innerText = String(setting.indicator);
-                        settingInput.addEventListener("change", function (event) {
-                            updateIndicator(setting.name, settingIndicator, event.target.value);
-                        });
+                    if (settings[i][4] != null) {
+                        settingInput.addEventListener("change", function(event) { updateIndicator(`${settings[i][0]}`, settingIndicator, event.target.value); });
                         settingCont.appendChild(settingIndicator);
                     }
                     settingCont.appendChild(settingInput);
                     settingsElm.appendChild(settingCont);
                 }
             } else {
-                console.error("err fetching settings json as array")
+                console.error("err fetching settings json as array");
             }
-        } catch (err) {
-            console.error("err loading settings:  ", err);
-        }
+        })();
     } else {
         settingsElm.innerHTML = "";
-        menuSettingItem.innerText = "settings";
         settingsWall.setAttribute("style", "display: none;");
         wall.removeAttribute("style");
-        menuSettingItem = document.querySelector(`#menu #item[onclick='link("home")']`);
-        menuSettingItem.innerText = "settings";
-        menuSettingItem.setAttribute("onclick", 'link("settings")');
-        menu(false);
     }
 }
-
 
 function updateIndicator(which, indicatorDummy, valueSTR) {
     let indicator = document.getElementById(`${which}Indicator`);
@@ -321,16 +295,4 @@ function updateIndicator(which, indicatorDummy, valueSTR) {
         default:
             console.error(`err! undefined setting change! this is very weird behavior and should never occur:  ${which}`);
     }
-}
-
-function saveSettings() {
-    //let themeData = settingsData.item[0];
-    //let customCSSdata = settingsData.item[1];
-    for (let i = 0; i < settingsData.length(); i++) {
-        settingsData.item[i].value = document.getElementById("themeValue").value;
-        settingsData.item[1].value = document.getElementById("customCSSValue").value;
-    }
-
-    console.log("attempting to save settings");
-    
 }
