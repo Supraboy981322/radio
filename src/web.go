@@ -37,6 +37,7 @@ func initWeb() {
 }
 
 func webInterface(w http.ResponseWriter, r *http.Request) {
+	var pageCont []byte;var err error
 	curTime := time.Now()
   
 	reqPage := r.URL.Path
@@ -45,14 +46,17 @@ func webInterface(w http.ResponseWriter, r *http.Request) {
     reqPage = "web/index.html"
 	case "/settings.json":
     reqPage = "settings.json"
+	case "/library.json":
+		pageCont = buildJSONlibrary()
 	default:
     reqPage = "web/" + reqPage[1:]
   }
-
-	var pageCont []byte;var err error
-  if pageCont, err = ioutil.ReadFile(reqPage); err != nil {
-    log.Errorf("err reading file for requested webpage:  %v", err)
-  }
+	
+	if pageCont == nil {
+	  if pageCont, err = ioutil.ReadFile(reqPage); err != nil {
+	    log.Errorf("err reading file for requested webpage:  %v", err)
+	  }
+	}
     
   log.Debugf("requestedPage:  %s", reqPage)
 
@@ -90,9 +94,10 @@ func buildJSONlibrary() []byte {
 		} else {
 			log.Debug("success asserting type")
 
+			url := "    \""+icecastDomain+"/"+name+".ogg\""
 			//add values
 			jsonStr = append(jsonStr, "    \""+name+"\",")
-			jsonStr = append(jsonStr, "    \""+icecastDomain+name+"\"")
+			jsonStr = append(jsonStr, url)
 		}
 
 		//end object
