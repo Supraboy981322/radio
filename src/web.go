@@ -130,7 +130,9 @@ func buildJSONlibrary() []byte {
 	}
 
 	//remove last char from last line (a comma)
-	jsonStr[len(jsonStr)-1] = jsonStr[len(jsonStr)-1][:len(jsonStr[len(jsonStr)-1])-1]
+	lastItm := len(jsonStr)-1
+	lastItmLen := len(jsonStr[lastItm])
+	jsonStr[lastItm] = jsonStr[lastItm][:lastItmLen-1]
 
 	//end json
 	jsonStr = append(jsonStr, "]")
