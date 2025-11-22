@@ -1,7 +1,5 @@
 @font-face {
     font-family: "pageTitle";
-/*    src: url("/fonts/GrowBack.otf");*/
-/*    src: url("/fonts/CholoRhita.otf");*/
     src: url("/fonts/blockat.otf");
 }
 
@@ -13,7 +11,6 @@
 :root {
     font-family: "primary";
     font-size: 5vw;
-    /*oklch(.83 .2 77.44)*/
     --backgroundPrimary: #2e3440;
     --textMain: #ffffff;
     --primary: #5e81ac;
@@ -21,6 +18,9 @@
     --tertiary: #deb1d6;
     --quaternary: oklch(.83 .2 77.44);
     --quinary: #f58c62;
+    --whiteIsh: rgb(216, 216, 216);
+    --senary: #f56262;
+    user-select: none;
 }
 
 body {
@@ -31,30 +31,185 @@ body {
     overflow-x: hidden;
 }
 
-.pageTitle {
-    font-family: "pageTitle";
+.topBar {
+    pointer-events: none;
     width: 100%;
     background-color: var(--secondary);
-    text-align: center;
-    margin: 0px;
-    color: var(--textMain);
-    padding: 0.2em;
+    max-height: 1.6em;
     z-index: 5;
-    position: sticky;
     top: 0;
+    position: sticky;
+    .pageTitle {
+        font-family: "pageTitle";
+        width: 100%;
+        text-align: center;
+        margin: 0px;
+        color: var(--textMain);
+        img {
+            margin: 0;
+            margin-top: 0.25em;
+            width: 6em;
+        }
+    }
+    
+    #menu {
+        pointer-events: auto;
+        left: 0.1em;
+        position: fixed;
+        padding: 0;
+        margin: 0;
+        top: 0.05em;
+        background-color: var(--whiteIsh);
+        color: var(--backgroundPrimary);
+        border: solid 0.2em var(--secondary);
+        width: 1.55em;
+        height: 1.55em;
+        border-radius: 0.3em;
+        font-size: 1.5em;
+        padding: 0.075em 0.1em 0.2em 0.25em;
+        box-sizing: border-box;
+        transition: all 0.25s;
+        * { font-size: 1.425em; }
+        .top {
+            display: block;
+            margin-top: -0.455em;
+            margin-bottom: -1.05em;
+            margin-left: -0.075em;
+            z-index: 999;
+            pointer-events: none !important;
+        }
+        .middle {
+            display: block;
+            margin-left: -0.075em;
+            margin-bottom: -1.04em;
+            pointer-events: none !important;
+        }
+        .bottom {
+            display: block;
+            margin-left: -0.075em;
+            pointer-events: none !important;
+        }
+    }
+
+    #menu:not(.menu) {
+        cursor: pointer;
+    }
+
+    #menu:not(.menu):hover {
+        background-color: var(--tertiary);
+        color: var(--backgroundPrimary);
+    }
+    .menu {
+        cursor: unset;
+        font-size: 1em !important;
+        width: fit-content !important;
+        height: fit-content !important;
+        padding: 0.4em 1em !important;
+        border-radius: 1em !important;
+        .close {
+            cursor: pointer;
+            padding: 0;
+            position: absolute;
+            right: 0;
+            margin: 0 0.2em;
+            border: none;
+            box-sizing: border-box;
+            height: 0.75em ;
+            background-color: var(--backgroundPrimary);
+            color: var(--whiteIsh);
+            border-radius: 0.3em;
+            width: 0.75em;
+            font-size: 2em !important;
+            text-align: center;
+            transition: all 0.25s;
+            p {
+                margin-top: -0.285em !important;
+                font-size: 1em !important;
+            }
+        }
+        
+        .close:hover {
+            background-color: var(--quaternary) !important;
+            color: var(--backgroundPrimary) !important;
+        }
+
+        #item:hover {
+            color: var(--quaternary);
+        }
+        #item {
+            width: fit-content;
+            cursor: pointer;
+            margin: 0.2em 0 !important;
+            transition: all 0.25s;
+        }
+
+    }
+    .menu:has(#item:hover), .menu:has(.close:hover) {
+        background-color: var(--secondary) !important;
+        border: solid 0.2em var(--backgroundPrimary) !important;
+    }
 }
 
-.icon {
-    border: solid 0.25em var(--secondary);
-    border-radius: 99em;
-    margin: 0;
-    padding: 0;
-    height: 2em;
-    width: 2em;
-    float: left;
-    z-index: 9;
-    top: 0;
-    position: fixed;
+.iconSVG {
+    width: 6em; 
+    .rect1 {
+        fill: rgb(216, 216, 216);
+        stroke: rgb(76, 86, 106);
+        stroke-width: 50px;
+        pointer-events: auto;
+    }
+    text {
+        fill: rgb(51, 51, 51);
+        font-family: "pageTitle";
+        font-size: 329.3px;
+        font-style: italic;
+        white-space: pre;
+        pointer-events: none;
+    }
+    .rect2 {
+        fill: rgb(46, 52, 64);
+        stroke-width: 50px;
+        stroke: rgb(76, 86, 106);
+        paint-order: fill;
+        pointer-events: auto;
+    }
+    .path1 {
+        stroke: rgb(0, 0, 0);
+        stroke-opacity: 0;
+        fill: rgb(94, 129, 172);
+        stroke-width: 1;
+    }
+    .ellipse1 {
+        stroke-width: 17;
+        paint-order: fill;
+        stroke: rgb(255, 180, 0);
+        fill: rgb(46, 52, 64);
+    }
+    .path2 {
+        stroke-width: 17;
+        fill: oklch(0.88 0 0);
+        stroke: rgb(255, 180, 0);
+    }
+    .ellipse2 {
+        stroke-width: 17;
+        fill-opacity: 0;
+        fill: oklch(0.88 0 0);
+        stroke: rgb(255, 180, 0);
+    }
+    .path3 {
+        stroke-width: 17;
+        fill-opacity: 0;
+        fill: oklch(0.88 0 0);
+        stroke: rgb(255, 180, 0);
+        transform-origin: 206.129px 445.647px;
+    }
+    .path4 {
+        stroke-width: 17;
+        fill-opacity: 0;
+        fill: oklch(0.88 0 0);
+        stroke: rgb(255, 180, 0);
+        transform-origin: 230.491px 306.466px;
+    }
 }
 
 .station {
@@ -65,6 +220,8 @@ body {
     left: 5%;
     padding: 0.5em;
     height: fit-content;
+    transition: all 0.25s;
+    cursor: pointer;
     button {
         flex-grow: 1;
         margin-left: 1em;
@@ -72,11 +229,12 @@ body {
         border-radius: 0.5em;
         padding: 0.225em 0.5em;
         font-weight: bold;
+        background-color: var(--whiteIsh);
         font-size: unset;
         transition: all 0.25s;
+        cursor: pointer;
     }
     
-    button:hover { background-color: var(--tertiary); }
     button.active{ background-color: var(--quaternary); }
     button.active:hover { background-color: var(--quinary); }
     
@@ -90,13 +248,94 @@ body {
     }
 }
 
+.station:hover {
+    font-size: 1.1em;
+    button {
+        background-color: var(--tertiary);
+    }
+
+    .title {
+        background-color: var(--quinary);
+        color: var(--backgroundPrimary);
+        font-weight: bold;
+    }
+}
+
+.station:has(button.active) {
+    .title {
+        background-color: var(--whiteIsh);
+        color: var(--backgroundPrimary);
+        font-weight: bold;
+    }
+}
+
+.station:has(button.active):hover {
+    .title {
+        background-color: var(--senary);
+    }
+    
+    button {
+        background-color: var(--quinary);
+    }
+}
+
+#settingsWall {
+    text-align: center;
+    padding-top: 1.5em;
+    button {
+        border: none;
+        border-radius: 1em;
+        padding: 0.25em 1em;
+        transition: all 0.25s;
+        font-size: 1.1em;
+        font-weight: bold;
+        background-color: var(--quaternary);
+        color: var(--backgroundPrimary);
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: var(--tertiary);
+    }
+
+    [type="input"] {
+        border-radius: 0.5em;
+        border: none;
+        padding: 0.25em 0.5em;
+        text-align: center;
+        margin-bottom: 0.75em;
+    }
+
+    #settings {
+        display: block;
+        .settingItem {
+            background-color: var(--secondary);
+            margin-top: 1em;
+            border-radius: 1em;
+            padding: 0.05em 1em 0.5em 1em;
+            width: fit-content;
+            margin-right: auto;
+            margin-left: auto;
+            .settingName {
+                background-color: var(--backgroundPrimary);
+                padding: 0.5em 0.5em;
+                border-radius: 0.5em;
+                font-weight: bold;
+            }
+            .settingDesc {
+                font-size: 0.75em;
+            }
+        }
+    }
+}
+
 @media screen and (orientation: landscape) {
     :root {
         font-size:4vh;
     }
     
     #wall {
-        margin-top: 1.5vw;
+        margin: 1.5vw 0;
     }
     
     .title {
@@ -119,7 +358,7 @@ body {
     }
     
     #wall {
-        margin-top: 0.5vw;
+        margin: 0.5vw 0;
     }
 }
 

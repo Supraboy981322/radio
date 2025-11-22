@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1450 600" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <bx:export>
+      <bx:file format="png" path="logoLong2.png"/>
+      <bx:file format="svg" path="logoLong2.svg"/>
+    </bx:export>
+  </defs>
+  <a transform="matrix(1, 0, 0, 1, 45.807495, 0)">
+    <rect x="214.525" y="146.536" width="1143.86" height="346.928" style="fill: rgb(216, 216, 216); stroke: rgb(76, 86, 106); stroke-width: 50px;" rx="177" ry="177"/>
+    <text style="fill: rgb(51, 51, 51); font-family: &quot;pageTitle&quot;; font-size: 329.3px; font-style: italic; white-space: pre;" x="514.424" y="429.469">radio</text>
+    <rect width="500" height="500" style="fill: rgb(46, 52, 64); stroke-width: 50px; stroke: rgb(76, 86, 106); paint-order: fill;" rx="1279" ry="1279" y="50"/>
+    <path style="stroke: rgb(0, 0, 0); stroke-opacity: 0; fill: rgb(94, 129, 172); stroke-width: 1;" d="M 143.878 289.773 C 128.731 266.042 248.158 256.661 272.665 244.901 C 276.664 242.595 280.39 240.122 283.848 237.519 C 258.162 225.363 228.535 205.665 223.131 188.374 C 229.139 194.192 280.018 215.247 307.416 212.212 C 322.368 188.387 321.494 163.264 306.465 154.575 C 271.919 135.277 183.107 148.639 171.369 153.108 C 186.105 144.098 324.808 72.111 355.998 177.885 C 356.713 184.016 356.86 190.799 356.526 198.078 C 410.79 188.036 422.687 209.237 421.849 247.815 C 408.049 212.878 377.983 214.677 353.507 225.531 C 340.292 306.731 281.621 435.111 280.694 427.171 L 143.878 289.773 Z M 171.369 153.108 C 170.522 153.626 170.085 153.936 170.101 153.992 C 169.98 153.769 170.426 153.467 171.369 153.108 Z"/>
+    <ellipse style="stroke-width: 17; paint-order: fill; stroke: rgb(255, 180, 0); fill: rgb(46, 52, 64);" cx="190.206" cy="373.397" rx="105.769" ry="105.769"/>
+    <path style="stroke-width: 17; fill: oklch(0.88 0 0); stroke: rgb(255, 180, 0);" d="M 92.824 352.174 L 290.323 397.53 L 92.824 352.174 Z"/>
+    <ellipse style="stroke-width: 17; fill-opacity: 0; fill: oklch(0.88 0 0); stroke: rgb(255, 180, 0);" cx="243.351" cy="321.823" rx="44.554" ry="99.898" transform="matrix(1, 0, -0.175167, 1, 2.543408, 52.114193)"/>
+  </a>
+  <path style="stroke-width: 17; fill-opacity: 0; fill: oklch(0.88 0 0); stroke: rgb(255, 180, 0); transform-origin: 206.129px 445.647px;" d="M 117.247 441.176 C 126.308 479.333 230.358 492.706 267.655 466.472 C 273.867 444.036 183.679 380.122 117.247 441.176 Z" transform="matrix(-0.994522, -0.104528, 0.104528, -0.994522, -0.000005, 0.000044)"/>
+  <path style="stroke-width: 17; fill-opacity: 0; fill: oklch(0.88 0 0); stroke: rgb(255, 180, 0); transform-origin: 230.491px 306.466px;" d="M 134.877 303.857 C 173.505 359.689 252.827 351.993 280.568 322.722 C 284.825 309.151 222.317 228.472 134.877 303.857 Z" transform="matrix(-0.994522, -0.104528, 0.104528, -0.994522, -0.000006, 0.000001)"/>
+</svg>
