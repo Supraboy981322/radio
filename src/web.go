@@ -42,13 +42,13 @@ func webInterface(w http.ResponseWriter, r *http.Request) {
   
 	reqPage := r.URL.Path
 	switch reqPage {
-	case "/":
+	 case "/":
     reqPage = "web/index.html"
-	case "/settings.json":
+	 case "/settings.json":
     pageCont = buildJSONsettings()
-	case "/library.json":
+	 case "/library.json":
 		pageCont = buildJSONlibrary()
-	default:
+	 default:
     reqPage = "web/" + reqPage[1:]
   }
 	

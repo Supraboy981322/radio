@@ -40,6 +40,7 @@ func stream(dir string, url string) {
 
 	tranArgs := []string{
 		"-loglevel", "error",  //basically no log
+		"-xerror",
 		"-re", //real-time
 		"-i", file, //filepath
 		"-c:a", "libvorbis", //codec
@@ -54,6 +55,7 @@ func stream(dir string, url string) {
 		"-loglevel", "error",  //basically no log
 		"-i", "pipe:0", //read stdin
 		"-content_type", "audio/ogg", //header
+		"-xerror",
 		"-f", "ogg", //filetype
 		url+".ogg", //icecast url
 	}

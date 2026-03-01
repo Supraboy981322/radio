@@ -45,16 +45,15 @@ func main() {
 
 func validateConfig() bool {
 	ok := true
-	switch (icecast) {
-	case "icecast://source:[password]@[ip]:[icecast port]", "", " ":
+
+	if (len(strings.TrimSpace(icecast)) == 0) {
 		log.Error("icecast interface url not set")
 		log.Error("please set it in your 'config.gomn' file")
 		log.Error("format:  'icecast://source:[password]@[ip]:[port]'")
 		ok = false
 	}
 	
-	switch (icecastDomain) {
-	case "https://[your icecast domain]", "", " ":
+	if (len(strings.TrimSpace(icecastDomain)) == 0) {
 		log.Error("icecast domain not set")
 		log.Error("please set it in your 'config.gomn' file")
 		log.Error("format:  'https://[your icecast domain]'")
