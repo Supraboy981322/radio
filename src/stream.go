@@ -34,7 +34,7 @@ func stream(dir string, url string) {
 
 	format := filepath.Ext(file)[1:]
 
-	log.Debugf("file extention:  %s", format)
+	log.Debugf("file (%s) extention:  %s", file, format)
 
 	log.Debug("stream() started")
 
